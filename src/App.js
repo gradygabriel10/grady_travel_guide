@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-import { getPlacesData, getWeatherData } from './api/travelAdvisorAPI';
+import { getPlacesData } from './api/travelAdvisorAPI';
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
@@ -22,7 +22,7 @@ const [isLoading, setIsLoading] = useState(false);
 
 useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-        setCoords({ lat: latitude, lng: longitude });
+    setCoords({ lat: latitude, lng: longitude });
     });
 }, []);
 
@@ -38,10 +38,10 @@ useEffect(() => {
 
     getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
-        setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
-        setFilteredPlaces([]);
-        setRating('');
-        setIsLoading(false);
+            setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
+            setFilteredPlaces([]);
+            setRating('');
+            setIsLoading(false);
         });
   }
 }, [bounds, type]);
